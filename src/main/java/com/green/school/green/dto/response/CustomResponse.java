@@ -24,5 +24,14 @@ public class CustomResponse {
         return pageResponse;
     }
 
+    public static ParseResponse getParseResponseSuccess() {
+        ParseResponse response = new ParseResponse();
+        response.setHttpCode(HttpStatus.OK.value());
+        response.setResponseCode(200);
+        response.setResponseMessage("success");
+        response.setData(null);
+        return response;
+    }
+
 }
 

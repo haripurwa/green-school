@@ -24,7 +24,7 @@ public class SiswaServiceImpl implements SiswaService {
     @Override
     public ParseResponse registrasi(RegistrasiRequest req) {
         saveSiswa(req);
-        return getParseResponseSuccess();
+        return CustomResponse.getParseResponseSuccess();
     }
 
     @Override
@@ -46,7 +46,7 @@ public class SiswaServiceImpl implements SiswaService {
         siswa.setPob(req.getPob());
         siswa.setEmail(req.getEmail());
         siswaRepository.save(siswa);
-        return getParseResponseSuccess();
+        return CustomResponse.getParseResponseSuccess();
     }
 
     @Override
@@ -65,14 +65,6 @@ public class SiswaServiceImpl implements SiswaService {
         siswa.setPob(req.getPob());
         siswa.setEmail(req.getEmail());
         siswaRepository.save(siswa);
-    }
-    private ParseResponse getParseResponseSuccess() {
-        ParseResponse response = new ParseResponse();
-        response.setHttpCode(HttpStatus.OK.value());
-        response.setResponseCode(200);
-        response.setResponseMessage("success");
-        response.setData(null);
-        return response;
     }
 
     private ParseResponse getResponse(Page<?> allDataList, PageResponse pageResponse) {
