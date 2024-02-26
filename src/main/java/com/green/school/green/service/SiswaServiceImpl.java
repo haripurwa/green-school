@@ -53,7 +53,7 @@ public class SiswaServiceImpl implements SiswaService {
     public ParseResponse listAllData(Pageable pageable) {
         Page<Siswa> all = siswaRepository.findAll(pageable);
         PageResponse pageResponse = CustomResponse.getPageResponse(all);
-        return getResponse(all, pageResponse);
+        return CustomResponse.getResponse(all, pageResponse);
     }
 
     private void saveSiswa(RegistrasiRequest req) {
@@ -65,15 +65,5 @@ public class SiswaServiceImpl implements SiswaService {
         siswa.setPob(req.getPob());
         siswa.setEmail(req.getEmail());
         siswaRepository.save(siswa);
-    }
-
-    private ParseResponse getResponse(Page<?> allDataList, PageResponse pageResponse) {
-        ParseResponse response = new ParseResponse();
-        response.setHttpCode(HttpStatus.OK.value());
-        response.setResponseCode(200);
-        response.setResponseMessage("success");
-        response.setData(allDataList.getContent());
-        response.setPage(pageResponse);
-        return response;
     }
 }

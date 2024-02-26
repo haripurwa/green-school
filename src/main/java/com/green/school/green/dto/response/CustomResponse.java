@@ -33,5 +33,15 @@ public class CustomResponse {
         return response;
     }
 
+    public static ParseResponse getResponse(Page<?> allDataList, PageResponse pageResponse) {
+        ParseResponse response = new ParseResponse();
+        response.setHttpCode(HttpStatus.OK.value());
+        response.setResponseCode(200);
+        response.setResponseMessage("success");
+        response.setData(allDataList.getContent());
+        response.setPage(pageResponse);
+        return response;
+    }
+
 }
 
