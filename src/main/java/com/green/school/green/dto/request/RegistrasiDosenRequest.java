@@ -12,7 +12,9 @@ import org.springframework.validation.annotation.Validated;
 public class RegistrasiDosenRequest {
     @NotBlank(message = "cannot be null and empty")
     private String name;
-    @Email(message = "Email should be valid")
+    @NotBlank(message = "cannot be null and empty")
+    private String nik;
+    @Email(message = "cannot be null and empty")
     private String email;
     @NotBlank(message = "cannot be null and empty")
     private String kelasDosen;

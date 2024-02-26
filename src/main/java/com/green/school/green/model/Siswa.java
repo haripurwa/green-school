@@ -18,6 +18,9 @@ public class Siswa {
     @Column(name = "name")
     public String name;
 
+    @Column(name = "nik")
+    public String nik;
+
     @Column(name = "gender")
     public String gender;
 

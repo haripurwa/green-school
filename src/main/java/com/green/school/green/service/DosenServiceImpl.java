@@ -25,8 +25,18 @@ public class DosenServiceImpl implements DosenService {
 
     @Override
     public ParseResponse registrasi(RegistrasiDosenRequest request) {
+        ParseResponse response = new ParseResponse();
+        Optional<Dosen> byNik = dosenRepository.findByNik(request.getNik());
+        if(byNik.isPresent()){
+            response.setHttpCode(HttpStatus.UNPROCESSABLE_ENTITY.value());
+            response.setResponseCode(422);
+            response.setResponseMessage("data already exist");
+            response.setData(null);
+            return response;
+        }
         Dosen dosen = new Dosen();
         dosen.setName(request.getName());
+        dosen.setNik(request.getNik());
         dosen.setEmail(request.getEmail());
         dosen.setKelasDosen(request.getKelasDosen());
         dosenRepository.save(dosen);
@@ -36,6 +46,7 @@ public class DosenServiceImpl implements DosenService {
 
     @Override
     public ParseResponse update(UpdateDosenRequest request, UUID id) {
+        ParseResponse response = new ParseResponse();
         Optional<Dosen> byId = dosenRepository.findById(id);
         if (byId.isPresent()) {
             Dosen dosen = byId.get();
@@ -46,7 +57,6 @@ public class DosenServiceImpl implements DosenService {
             dosenRepository.save(dosen);
             return CustomResponse.getParseResponseSuccess();
         } else {
-            ParseResponse response = new ParseResponse();
             response.setHttpCode(HttpStatus.UNPROCESSABLE_ENTITY.value());
             response.setResponseCode(422);
             response.setResponseMessage("data not found");

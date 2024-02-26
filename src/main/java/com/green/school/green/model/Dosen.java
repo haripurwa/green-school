@@ -15,7 +15,7 @@ import java.util.UUID;
 public class Dosen {
     @Id
     private UUID id;
-
+    private String nik;
     public String name;
     public String kelasDosen;
     public String email;

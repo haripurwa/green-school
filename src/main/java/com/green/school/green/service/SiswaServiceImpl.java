@@ -23,6 +23,15 @@ public class SiswaServiceImpl implements SiswaService {
 
     @Override
     public ParseResponse registrasi(RegistrasiRequest req) {
+        ParseResponse response = new ParseResponse();
+        Optional<Siswa> byNik = siswaRepository.findByNik(req.getNik());
+        if(byNik.isPresent()){
+            response.setHttpCode(HttpStatus.UNPROCESSABLE_ENTITY.value());
+            response.setResponseCode(422);
+            response.setResponseMessage("data already exist");
+            response.setData(null);
+            return response;
+        }
         saveSiswa(req);
         return CustomResponse.getParseResponseSuccess();
     }

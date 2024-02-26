@@ -8,4 +8,5 @@ import java.util.Optional;
 @Repository
 public interface SiswaRepository extends JpaRepository<Siswa, Integer> {
     Optional<Siswa> findById(int id);
+    Optional<Siswa> findByNik(String nik);
 }

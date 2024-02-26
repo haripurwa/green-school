@@ -10,4 +10,5 @@ import java.util.UUID;
 @Repository
 public interface DosenRepository extends JpaRepository<Dosen, UUID> {
     Optional<Dosen> findById(UUID id);
+    Optional<Dosen> findByNik(String nik);
 }
